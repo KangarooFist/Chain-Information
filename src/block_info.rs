@@ -27,3 +27,13 @@ pub fn block_status_request() -> BlockStatus{
     let response = send_request(ROOT);
     serde_json::from_str(&response).expect("Failed to Parse")
 }
+
+pub fn address_request(address: &str) -> BlockAddress{
+    let response = send_request(&[ROOT, "/v2/address/", &address].join(""));
+    serde_json::from_str(&response).expect("Failed to Parse")
+}
+
+pub fn tx_request(tx: &str) -> BlockTx{
+    let response = send_request(&[ROOT, "/v2/tx/", &tx].join(""));
+    serde_json::from_str(&response).expect("Failed to Parse")
+}
