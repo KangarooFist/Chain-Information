@@ -19,7 +19,7 @@ fn blockchain_info_app(address: &str) {
     println!("\n\nQuerying {} - chain: {}\n\n", &block_status.blockbook.coin, &block_status.backend.chain);
     
     let block_address: BlockAddress = block_info::address_request(address);
-    println!("\n\nAnalysing transaction for current ETH address {}", &block_address.address);
+    println!("\n\nAnalysing transaction for current BTC address {}", &block_address.address);
 
     let sleep_time = time::Duration::from_millis(2500);
     thread::sleep(sleep_time);
@@ -47,18 +47,18 @@ fn blockchain_info_app(address: &str) {
             let match_address = String::from(address);
 
             for tx in &block_tx.vin {
-                if tx.addresses.contains(&match_address) {
-                    subtotal_vin += tx.value.parse::<i32>().unwrap();
-                }
-            }
+                 if tx.addresses.contains(&match_address) {
+                     subtotal_vin += tx.value.parse::<i32>().unwrap();
+                 }
+             }
                 
             for tx in &block_tx.vout {
-                if tx.addresses.contains(&match_address) {
-                    subtotal_vout += tx.value.parse::<i32>().unwrap();
-                }
-            }
+                 if tx.addresses.contains(&match_address) {
+                     subtotal_vout += tx.value.parse::<i32>().unwrap();
+                 }
+             }
 
-            balance += &subtotal_vin - subtotal_vout;
+             balance += &subtotal_vout - subtotal_vin;
 
             println!("-----------------------------------------------------");
             println!("TX ID:           {}", &block_tx.txid);
@@ -69,7 +69,7 @@ fn blockchain_info_app(address: &str) {
         };
 
         println!("CURRENT BALANCE:     {}", &balance);
-        println!("         IN ETH:     {}\n\n", balance as f32 * 0.00000001);
+        println!("         IN BTC:     {} BTC\n\n", balance as f32 * 0.00000001);
     }
 }
 

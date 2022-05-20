@@ -1,1 +1,1 @@
-Known Bugs that cause program to Panic early. Fix in progress.
+Program switched to BTC wallets for the time being until API can be understood. Working on UI.

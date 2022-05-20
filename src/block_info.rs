@@ -6,7 +6,7 @@ use crate::block_status::BlockStatus;
 use crate::block_address::BlockAddress;
 use crate::block_tx::BlockTx;
 
-const ROOT: &str = "https://eth-blockbook.nownodes.io/api/";
+const ROOT: &str = "https://btcbook.nownodes.io/api/";
 
 #[tokio::main]
 pub async fn send_request(url: &str) -> String {
@@ -34,6 +34,6 @@ pub fn address_request(address: &str) -> BlockAddress{
 }
 
 pub fn tx_request(transaction: &str) -> BlockTx{
-    let response = send_request(&[ROOT, "/v2/tx/", &transaction].join(""));
+    let response = send_request(&[ROOT, "/v2/tx/",&transaction].join(""));
     serde_json::from_str(&response).expect("Failed to Parse JSON")
 }
