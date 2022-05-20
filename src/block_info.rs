@@ -33,7 +33,7 @@ pub fn address_request(address: &str) -> BlockAddress{
     serde_json::from_str(&response).expect("Failed to Parse")
 }
 
-pub fn tx_request(tx: &str) -> BlockTx{
-    let response = send_request(&[ROOT, "/v2/tx/", &tx].join(""));
-    serde_json::from_str(&response).expect("Failed to Parse")
+pub fn tx_request(transaction: &str) -> BlockTx{
+    let response = send_request(&[ROOT, "/v2/tx/", &transaction].join(""));
+    serde_json::from_str(&response).expect("Failed to Parse JSON")
 }

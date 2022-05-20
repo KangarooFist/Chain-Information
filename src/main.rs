@@ -1,4 +1,3 @@
-
 #[macro_use]
 extern crate serde_derive;
 
@@ -9,7 +8,7 @@ mod block_tx;
 
 //mod brings in other files 
 
-use crate::{block_status::BlockStatus, block_info::tx_request};
+use crate::block_status::BlockStatus;
 use crate::block_address::BlockAddress;
 use crate::block_tx::BlockTx;
 use dotenv;
@@ -57,10 +56,9 @@ fn blockchain_info_app(address: &str) {
                 if tx.addresses.contains(&match_address) {
                     subtotal_vout += tx.value.parse::<i32>().unwrap();
                 }
-
             }
 
-            balance += &subtotal_vout - subtotal_vin;
+            balance += &subtotal_vin - subtotal_vout;
 
             println!("-----------------------------------------------------");
             println!("TX ID:           {}", &block_tx.txid);
